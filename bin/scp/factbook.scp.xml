@@ -1,0 +1,11 @@
+
+<root>
+<url><![CDATA[https://www.cia.gov/cia/publications/factbook/*]]></url>
+
+<attrib name="country">
+<![CDATA[The World Factbook - ([A-Za-z.() ]+)</title>]]>
+</attrib>
+<attrib name="population"><![CDATA[Population:.*<br>([0-9.]+)]]></attrib>
+
+
+</root>

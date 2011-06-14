@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<project default="jar">
+   <property name="version.num" value="0.4.5"/>
+   <property name="talk" value="true"/>
+
+   <path id="classpath.base">
+      <pathelement location="lib/jena.jar"/>
+      <pathelement location="/usr/lib/java/swt.jar"/>
+   </path>
+   <path id="classpath.test">
+      <pathelement location="lib/jena.jar"/>
+      <pathelement location="/usr/lib/java/swt.jar"/>
+      <pathelement location="/usr/share/java/junit.jar"/>
+   </path>
+	
+	<target name="compile" description="compile sources">
+		<javac srcdir="src" destdir="bin" listfiles="yes" verbose="${talk}">
+         <classpath refid="classpath.base"/>
+      </javac>
+	</target>
+
+	<target name="compile-test" description="compile sources">
+		<javac srcdir="test" destdir="bin" listfiles="yes"
+      verbose="${talk}">
+         <classpath refid="classpath.test"/>
+      </javac>
+	</target>
+
+   <target name="test" depends="compile-test">
+      <junit>
+         <classpath refid="classpath.test"/>
+         <formatter type="brief" usefile="false"/>
+         <test name="TestExample"/>
+      </junit>
+   </target>
+	
+	<target name="jar" depends="compile" description="compress jar file">
+      <delete file="lib/SemList*.jar" />
+      <delete file="MANIFEST.MF" />
+      <buildnumber file="build.num"/>
+      <tstamp>
+         <format property="TODAY" pattern="yyyy-MM-dd hh:mm:ss"/>
+      </tstamp>
+      
+      <manifest file="MANIFEST.MF">
+         <attribute name="Built-By" value="${user.name}" />
+         <attribute name="Main-Class" value="semlist.swing.SwingController" />
+         <attribute name="Implementation-Version" value="${version.num}-${build.number}"/>
+         <attribute name="Built-Date" value="${TODAY}"/>
+		</manifest>
+      
+      <jar jarfile="lib/SemList-${version.num}-${build.number}.jar"
+      	basedir="bin" includes="**/*.class,**./*.properties" manifest="MANIFEST.MF"/>
+	</target>
+
+
+   <target name="clean" description="clean up">
+      <delete includeEmptyDirs="true">
+         <fileset dir="bin" includes="**/*"/>
+      </delete>
+   </target>
+
+   <target name="tarball" depends="clean" description="build tarball">
+      <tstamp>
+         <format property="TODAY" pattern="yyyyMMddhhmmss"/>
+      </tstamp>
+      <tar destfile="SemList-${version.num}-${TODAY}.tar.gz"
+      basedir="./"
+      excludes="**/*.tar.gz"
+      compression="gzip"/>
+	</target>
+
+</project>

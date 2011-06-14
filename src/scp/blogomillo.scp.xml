@@ -1,0 +1,11 @@
+
+
+<scpmap url="http://blogaliza.org/index.php?val=lblogomillo">
+    String mill1_pattern = "><font face=\"Arial, Helvetica, sans-serif\" size=\"3\" color=\"#FFFFFF\">([^<]*)";
+
+    
+</scpmap>
+
+
+    String rag2_url = "http://www.elpais.com/cartelera/pelicula.html?provincia=0000000038&localidad=&pel_pelicula=0000079824";
+    String rag2_pattern = "<font size=\"2\">([[^<][^/][^f]]*)</font>";

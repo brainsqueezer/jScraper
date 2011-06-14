@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.5
+Created-By: 1.6.0-b105 (Sun Microsystems Inc.)
+Built-By: rap
+Main-Class: semlist.swing.SwingController
+Implementation-Version: 0.4.5-8
+Built-Date: 2007-05-28 12:57:06
+
